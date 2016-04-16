@@ -15,7 +15,7 @@ public class Main {
 		GamePanel gp = new GamePanel();
 		GameEngine engine = new GameEngine(gp, v);
 		frame.getContentPane().add(gp, BorderLayout.CENTER);
-
+		frame.addKeyListener(engine);
 		frame.setVisible(true);
 
 		engine.start();

@@ -9,10 +9,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Iterator;
 
-public class GameEngine implements GameReporter{
+public class GameEngine implements KeyListener, GameReporter{
 	GamePanel gp;
 	private SpaceShip v;
+
 	private Timer timer;
+
+	private double difficulty = 0.1;
 	private long score = 0;
 
 	public GameEngine(GamePanel gp, SpaceShip v){
@@ -42,4 +45,34 @@ public class GameEngine implements GameReporter{
 	public long getScore(){
 		return score;
 }
+
+void controlVehicle(KeyEvent e) {
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT: //move left
+			v.move(-1);
+			break;
+		case KeyEvent.VK_RIGHT: //move right
+			v.move(1);
+			break;
+		case KeyEvent.VK_D:
+			difficulty += 0.1;
+			break;
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		controlVehicle(e);
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		//do nothing
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		//do nothing		
+	}
 }
