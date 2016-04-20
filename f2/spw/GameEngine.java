@@ -12,6 +12,7 @@ import java.util.Iterator;
 public class GameEngine implements KeyListener, GameReporter{
 	GamePanel gp;
 	private SpaceShip v;
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 	private Timer timer;
 
@@ -37,7 +38,17 @@ public class GameEngine implements KeyListener, GameReporter{
 		timer.start();
 	}
 
+	private void generateEnemy(){ //generate enemy
+		Enemy e = new Enemy((int)(Math.random()*390), 30);
+		gp.sprites.add(e);
+		enemies.add(e);
+	}
+
 	private void process(){
+		if(Math.random() < difficulty){
+			generateEnemy();
+		} //generate enemy depends on difficulty
+
 		gp.updateGameUI(this); //show panel
 		
 	}
