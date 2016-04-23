@@ -49,7 +49,21 @@ public class GameEngine implements KeyListener, GameReporter{
 			generateEnemy();
 		} //generate enemy depends on difficulty
 
+		Iterator<Enemy> e_iter = enemies.iterator();
+		while(e_iter.hasNext()){
+			Enemy e = e_iter.next();
+			e.proceed(); //movement of enemy
+			
+			if(!e.isAlive()){//enemy that dies will disapeare
+				e_iter.remove();
+				gp.sprites.remove(e); 
+				score += 100; //increase score
+			} 
+		} 
+
 		gp.updateGameUI(this); //show panel
+
+
 		
 	}
 
