@@ -63,15 +63,26 @@ public class GameEngine implements KeyListener, GameReporter{
 
 		gp.updateGameUI(this); //show panel
 
+		Rectangle2D.Double vr = v.getRectangle();
+		Rectangle2D.Double er;
+		for(Enemy e : enemies){
+			er = e.getRectangle();
+			if(er.intersects(vr)){
+				die();
+				return;
+			}
+		} //player dies when hits an enemy 
+	}
 
-		
+	public void die(){ // player can die
+		timer.stop();
 	}
 
 	public long getScore(){
 		return score;
 }
 
-void controlVehicle(KeyEvent e) {
+    void controlVehicle(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT: //move left
 			v.move(-1);
