@@ -85,10 +85,16 @@ public class GameEngine implements KeyListener, GameReporter{
     void controlVehicle(KeyEvent e) {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_LEFT: //move left
-			v.move(-1);
+			v.moveLeftRight(-1);
 			break;
 		case KeyEvent.VK_RIGHT: //move right
-			v.move(1);
+			v.moveLeftRight(1);
+			break;
+		case KeyEvent.VK_UP:
+			v.moveUpDown(-1);
+			break;
+		case KeyEvent.VK_DOWN:
+			v.moveUpDown(1);
 			break;
 		case KeyEvent.VK_D:
 			difficulty += 0.1;
